@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { InitialContext } from "./hoc/InitialContext";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import HomeContainer from "./containers/Home";
+import BlogsContainer from "./containers/Blogs";
 import LoginContainer from "./containers/Login";
 export default function App(props) {
   const { user, updateUser } = useContext(InitialContext);
@@ -17,7 +18,10 @@ export default function App(props) {
                 path="/home"
                 render={(props) => <HomeContainer {...props} />}
               />
-
+              <Route
+                path="/blogs"
+                render={(props) => <BlogsContainer {...props} />}
+              />
               <Redirect exact from="/" to="/home" />
             </div>
           ) : (
