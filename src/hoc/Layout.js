@@ -13,9 +13,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Layout(props) {
   const classes = useStyles();
-
   const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
+
+  React.useEffect(() => {
+    if (props.match.path === "/blogs") {
+      setValue(1);
+    }
+  }, [props.match.path]);
+  const handleChange = (newValue) => {
     setValue(newValue);
     if (newValue === 0) {
       props.history.push("/home");
@@ -24,6 +29,7 @@ function Layout(props) {
       props.history.push("/blogs");
     }
   };
+  console.log(value);
   return (
     <div>
       <Paper className={classes.root}>
@@ -31,12 +37,14 @@ function Layout(props) {
           value={value}
           indicatorColor="primary"
           textColor="primary"
-          onChange={handleChange}
+          onChange={(e, v) => {
+            e.preventDefault();
+            console.log(e, v);
+            handleChange(v);
+          }}
         >
           <Tab label="Users" />
           <Tab label="Active" />
-          {/* <Tab label="Sign Out" /> */}
-          <Tab label="Developed by Rakesh Sinha" disabled />
         </Tabs>
       </Paper>
       {props.children}
