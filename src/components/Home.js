@@ -32,14 +32,7 @@ export default function Home(props) {
   }, [props.allusers]);
   return (
     <Layout>
-      <RTable
-        columns={columns}
-        data={data}
-        // loading={loading}
-        // handleFetchData={(rowsPerPage) =>
-        //   dispatch(callGetRideHistory(rowsPerPage))
-        // }
-      />
+      <RTable columns={columns} data={data} />
     </Layout>
   );
 }
